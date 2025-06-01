@@ -1,0 +1,145 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background-image: url('images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+  position: relative;
+  padding: 0 20px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(5px);
+  z-index: -1;
+}
+
+.center-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 5rem;
+  margin-bottom: 30px;
+  text-shadow: 0 0 20px #00d8ff;
+}
+
+button {
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 15px 50px;
+  border: none;
+  border-radius: 40px;
+  background: linear-gradient(90deg, #00d8ff, #005f8f);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 6px 20px #00d8ffbb;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #00ffff, #0088cc);
+  box-shadow: 0 8px 25px #00d8ffee;
+}
+
+.hidden {
+  display: none;
+}
+
+#levels-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.level-btn {
+  background: #222;
+  border: 2px solid #00d8ff;
+  color: #00d8ff;
+  width: 60px;
+  height: 60px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 15px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.level-btn:hover:not(.locked) {
+  background: #00d8ff;
+  color: #000;
+}
+
+.level-btn.locked {
+  border-color: #555;
+  color: #555;
+  cursor: default;
+}
+
+#back-to-levels-btn {
+  margin-top: 20px;
+  background: #444;
+  box-shadow: none;
+}
+
+#back-to-levels-btn:hover {
+  background: #666;
+}
+/* Tahmin kutusu üstteki boş alan */
+#guess-box {
+  margin: 0 auto 20px;
+  width: 220px;
+  height: 50px;
+  border: 3px solid #00d8ff;  /* Daha önce kullandığın mavi ton */
+  border-radius: 10px;
+  font-family: 'Arial', sans-serif; /* Önceki yazı tipine uyumlu */
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 50px;
+  user-select: none;
+  background-color: #f0f8ff; /* Hafif açık mavi */
+  color: #000; /* Yazı rengi siyah */
+  box-shadow: 0 0 5px rgba(0, 216, 255, 0.7);
+}
+
+/* Kelime seçenekleri alt kısım */
+.word-option {
+  display: inline-block;
+  background-color: #00d8ff;
+  color: black;
+  font-weight: 700;
+  font-family: 'Arial', sans-serif; /* Yazı tipi uyumu */
+  font-size: 1.4rem;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  user-select: none;
+  margin: 0 10px 10px 0;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 4px rgba(0, 216, 255, 0.6);
+}
+
+.word-option:hover {
+  background-color: #00ffff;
+}
+
+/* Mesaj alanı için opacity geçişi varsa */
+#message {
+  transition: opacity 0.3s ease;
+}
+

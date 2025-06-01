@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kelime Tahmin Oyunu</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Başlangıç Ekranı -->
+  <div id="start-screen" class="center-screen">
+    <h1>WordQuest</h1>
+    <button id="start-btn">Oyna</button>
+  </div>
+
+  <!-- Oyun Ekranı (başlangıçta gizli) -->
+  <div id="game-screen" class="hidden">
+
+    <!-- Level seçimi -->
+    <div id="level-select">
+      <h2>Seviye Seçimi</h2>
+      <div id="levels-container">
+        <!-- Level butonları buraya -->
+      </div>
+    </div>
+
+    <!-- Oyun alanı -->
+    <div id="game-area" class="hidden">
+      <h2 id="hint"></h2>
+      <div id="guess-container"></div>
+      <div id="letter-pool"></div>
+      <button id="submit-btn">Tahmini Onayla</button>
+      <div id="message"></div>
+      <button id="back-to-levels-btn">Seviye Seçimine Dön</button>
+    </div>
+
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
