@@ -85,9 +85,8 @@ const levels = [
 
 // localStorage'dan kaydedilmiş seviyeyi oku veya 1 ile başla
 let unlockedLevels = parseInt(localStorage.getItem("unlockedLevels")) || 1;
-
 let currentLevel = null;
-let currentGuess = new Array();
+let currentGuess = [];
 
 const startScreen = document.getElementById("start-screen");
 const startBtn = document.getElementById("start-btn");
@@ -110,21 +109,24 @@ startBtn.addEventListener("click", () => {
 function showLevelSelect() {
   gameArea.classList.add("hidden");
   levelsContainer.innerHTML = "";
-  for(let i = 0; i < levels.length; i++){
+
+  levels.forEach((_, i) => {
     const btn = document.createElement("button");
-    btn.textContent = (i + 1);
+    btn.textContent = i + 1;
     btn.classList.add("level-btn");
-    if(i + 1 > unlockedLevels){
+
+    if (i + 1 > unlockedLevels) {
       btn.classList.add("locked");
       btn.disabled = true;
     }
+
     btn.addEventListener("click", () => {
-      if(i + 1 <= unlockedLevels){
-        startLevel(i);
-      }
+      if (i + 1 <= unlockedLevels) startLevel(i);
     });
+
     levelsContainer.appendChild(btn);
-  }
+  });
+
   levelsContainer.parentElement.classList.remove("hidden");
 }
 
@@ -134,29 +136,22 @@ function startLevel(levelIndex) {
   messageDiv.textContent = "";
   hintDiv.textContent = levels[levelIndex].hint;
 
-  guessContainer.innerHTML = "";
-  const guessBox = document.createElement("div");
-  guessBox.id = "guess-box";
-  guessBox.textContent = "";
-  guessContainer.appendChild(guessBox);
-
+  guessContainer.innerHTML = `<div id="guess-box"></div>`;
   letterPool.innerHTML = "";
-  levels[levelIndex].letters.forEach(letter => {
-    addLetterToPool(letter);
-  });
+
+  levels[levelIndex].letters.forEach(addLetterToPool);
 
   submitBtn.disabled = false;
-
   gameArea.classList.remove("hidden");
   levelsContainer.parentElement.classList.add("hidden");
 }
 
-function addLetterToPool(letter){
+function addLetterToPool(letter) {
   const lDiv = document.createElement("div");
   lDiv.classList.add("letter");
   lDiv.textContent = letter;
   lDiv.addEventListener("click", () => {
-    if(currentGuess.length >= levels[currentLevel].word.length) return;
+    if (currentGuess.length >= levels[currentLevel].word.length) return;
     currentGuess.push(letter);
     updateGuessBox();
     lDiv.remove();
@@ -165,48 +160,17 @@ function addLetterToPool(letter){
 }
 
 function updateGuessBox() {
-  const guessBox = document.getElementById("guess-box");
-  guessBox.textContent = currentGuess.join("");
+  document.getElementById("guess-box").textContent = currentGuess.join("");
 }
 
-submitBtn.addEventListener("click", () => {
-  if(currentGuess.length !== levels[currentLevel].word.length){
-    showMessage("Lütfen tüm harfleri seç!", "red");
-    return;
-  }
-  const guessStr = currentGuess.join("");
-  if(guessStr === levels[currentLevel].word){
-    showMessage("Tebrikler, doğru bildin!", "lightgreen");
-
-    if(unlockedLevels === currentLevel + 1 && unlockedLevels < levels.length){
-      unlockedLevels++;
-      localStorage.setItem("unlockedLevels", unlockedLevels);  // burası eklendi!
-    }
-
-    setTimeout(() => {
-      if(unlockedLevels <= levels.length){
-        showLevelSelect();
-      } else {
-        showMessage("Tüm seviyeleri tamamladın! 🎉", "gold");
-      }
-    }, 1500);
-
-  } else {
-    showMessage("Yanlış, tekrar dene.", "red");
-    resetGuess();
-  }
-});
-
-function resetGuess(){
+function resetGuess() {
   currentGuess = [];
   updateGuessBox();
   letterPool.innerHTML = "";
-  levels[currentLevel].letters.forEach(letter => {
-    addLetterToPool(letter);
-  });
+  levels[currentLevel].letters.forEach(addLetterToPool);
 }
 
-function showMessage(text, color){
+function showMessage(text, color) {
   messageDiv.style.color = color;
   messageDiv.style.opacity = 0;
   messageDiv.textContent = text;
@@ -215,9 +179,38 @@ function showMessage(text, color){
   }, 100);
 }
 
+submitBtn.addEventListener("click", () => {
+  if (currentGuess.length !== levels[currentLevel].word.length) {
+    showMessage("Lütfen tüm harfleri seç!", "red");
+    return;
+  }
+
+  const guessStr = currentGuess.join("");
+  if (guessStr === levels[currentLevel].word) {
+    showMessage("Tebrikler, doğru bildin!", "lightgreen");
+
+    if (unlockedLevels === currentLevel + 1 && unlockedLevels < levels.length) {
+      unlockedLevels++;
+      localStorage.setItem("unlockedLevels", unlockedLevels);
+    }
+
+    setTimeout(() => {
+      if (unlockedLevels <= levels.length) {
+        showLevelSelect();
+      } else {
+        showMessage("Tüm seviyeleri tamamladın! 🎉", "gold");
+      }
+    }, 1500);
+  } else {
+    showMessage("Yanlış, tekrar dene.", "red");
+    resetGuess();
+  }
+});
+
 backToLevelsBtn.addEventListener("click", () => {
   gameArea.classList.add("hidden");
   levelsContainer.parentElement.classList.remove("hidden");
   messageDiv.textContent = "";
   resetGuess();
 });
+
