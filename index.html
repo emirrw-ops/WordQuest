@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Kelime Tahmin Oyunu</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kelime Tahmin Oyunu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -15,18 +15,36 @@
     <button id="start-btn">Oyna</button>
   </div>
 
-  <!-- Oyun Ekranı (başlangıçta gizli) -->
+  <!-- Oyun Ekranı -->
   <div id="game-screen" class="hidden">
 
-    <!-- Level seçimi -->
+    <!-- Seviye Seçimi -->
     <div id="level-select">
       <h2>Seviye Seçimi</h2>
       <div id="levels-container">
-        <!-- Level butonları buraya -->
+        <!-- Seviye butonları buraya eklenecek -->
       </div>
+      <!-- Sıralama Butonu -->
+      <button id="ranking-btn">Sıralama</button>
     </div>
 
-    <!-- Oyun alanı -->
+    <!-- Kayıt Olma Ekranı -->
+    <div id="register-screen" class="hidden">
+      <h2>Kayıt Ol</h2>
+      <label>İsim: <input type="text" id="username-input" /></label>
+      <button id="register-btn">Kayıt Ol</button>
+      <p id="register-message"></p>
+      <button id="close-register">Kapat</button>
+    </div>
+
+    <!-- Sıralama Ekranı -->
+    <div id="ranking-screen" class="hidden">
+      <h2>En İyi 5 Oyuncu</h2>
+      <ol id="ranking-list"></ol>
+      <button id="close-ranking">Kapat</button>
+    </div>
+
+    <!-- Oyun Alanı -->
     <div id="game-area" class="hidden">
       <h2 id="hint"></h2>
       <div id="guess-container"></div>
@@ -38,6 +56,6 @@
 
   </div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
