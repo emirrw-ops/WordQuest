@@ -19,7 +19,7 @@ const levels = [
   { word: "BİLGİSAYAR", hint: "Teknoloji cihazı", letters: ["A", "R", "B", "İ", "Y", "S", "L", "G", "A", "İ"] },
   { word: "MÜZİK", hint: "Seslerden oluşan sanat", letters: ["M", "Z", "İ", "K", "Ü"] },
   { word: "TAŞ", hint: "Sert doğal malzeme", letters: ["T", "Ş", "A"] },
-  { word: "KIRMIZI", hint: "Bir renk", letters: ["I", "Z", "M", "K", "I", "R", "İ"] },
+  { word: "KIRMIZI", hint: "Bir renk", letters: ["I", "Z", "M", "K", "I", "R", "I"] },
   { word: "SEVİM", hint: "Sevgiyle ilgili", letters: ["S", "M", "İ", "E", "V"] },
 
   // 21-40
@@ -82,8 +82,11 @@ const levels = [
 ];
 
 
+
+// localStorage'dan kaydedilmiş seviyeyi oku veya 1 ile başla
+let unlockedLevels = parseInt(localStorage.getItem("unlockedLevels")) || 1;
+
 let currentLevel = null;
-let unlockedLevels = 1; // Başlangıçta sadece 1. seviye açık
 let currentGuess = new Array();
 
 const startScreen = document.getElementById("start-screen");
@@ -132,7 +135,6 @@ function startLevel(levelIndex) {
   hintDiv.textContent = levels[levelIndex].hint;
 
   guessContainer.innerHTML = "";
-  // Yeni: Üstte boşluk kutusu (tek kutu)
   const guessBox = document.createElement("div");
   guessBox.id = "guess-box";
   guessBox.textContent = "";
@@ -154,7 +156,7 @@ function addLetterToPool(letter){
   lDiv.classList.add("letter");
   lDiv.textContent = letter;
   lDiv.addEventListener("click", () => {
-    if(currentGuess.length >= levels[currentLevel].word.length) return; // Dolmuşsa ekleme yok
+    if(currentGuess.length >= levels[currentLevel].word.length) return;
     currentGuess.push(letter);
     updateGuessBox();
     lDiv.remove();
@@ -178,6 +180,7 @@ submitBtn.addEventListener("click", () => {
 
     if(unlockedLevels === currentLevel + 1 && unlockedLevels < levels.length){
       unlockedLevels++;
+      localStorage.setItem("unlockedLevels", unlockedLevels);  // burası eklendi!
     }
 
     setTimeout(() => {
