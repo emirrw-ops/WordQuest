@@ -22,16 +22,16 @@
     <div id="level-select">
       <h2>Seviye Seçimi</h2>
       <div id="levels-container">
-        <!-- Seviye butonları buraya eklenecek -->
+        <!-- script.js seviyeleri buraya dinamik olarak ekler -->
       </div>
-      <!-- Sıralama Butonu -->
       <button id="ranking-btn">Sıralama</button>
     </div>
 
     <!-- Kayıt Olma Ekranı -->
     <div id="register-screen" class="hidden">
       <h2>Kayıt Ol</h2>
-      <label>İsim: <input type="text" id="username-input" /></label>
+      <label for="username-input">İsim:</label>
+      <input type="text" id="username-input" />
       <button id="register-btn">Kayıt Ol</button>
       <p id="register-message"></p>
       <button id="close-register">Kapat</button>
@@ -40,15 +40,22 @@
     <!-- Sıralama Ekranı -->
     <div id="ranking-screen" class="hidden">
       <h2>En İyi 5 Oyuncu</h2>
-      <ol id="ranking-list"></ol>
+      <ol id="ranking-list">
+        <!-- script.js sıralamayı buraya ekler -->
+      </ol>
       <button id="close-ranking">Kapat</button>
     </div>
 
     <!-- Oyun Alanı -->
     <div id="game-area" class="hidden">
-      <h2 id="hint"></h2>
-      <div id="guess-container"></div>
-      <div id="letter-pool"></div>
+      <h2 id="hint">İpucu</h2>
+      <div id="guess-container">
+        <!-- script.js boş kutuları buraya yerleştirir -->
+        <div id="guess-box"></div>
+      </div>
+      <div id="letter-pool">
+        <!-- script.js harf butonlarını buraya yerleştirir -->
+      </div>
       <button id="submit-btn">Tahmini Onayla</button>
       <div id="message"></div>
       <button id="back-to-levels-btn">Seviye Seçimine Dön</button>
