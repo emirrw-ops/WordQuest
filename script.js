@@ -83,7 +83,6 @@ const levels = [
 
 
 
-// localStorage'dan kaydedilmiş seviyeyi oku veya 1 ile başla
 let unlockedLevels = parseInt(localStorage.getItem("unlockedLevels")) || 1;
 let currentLevel = null;
 let currentGuess = [];
