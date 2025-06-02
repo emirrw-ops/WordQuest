@@ -81,6 +81,9 @@ const levels = [
   { word: "TEKNOLOJİK", hint: "Teknoloji ile ilgili", letters: ["N", "T", "O", "J", "L", "İ", "E", "K", "K", "O"] }
 ];
 
+document.getElementById("open-register-btn").addEventListener("click", () => {
+  document.getElementById("register-screen").classList.remove("hidden");
+});
 
 
 let unlockedLevels = parseInt(localStorage.getItem("unlockedLevels")) || 1;
