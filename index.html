@@ -13,6 +13,7 @@
   <div id="start-screen" class="center-screen">
     <h1>WordQuest</h1>
     <button id="start-btn">Oyna</button>
+    <button id="open-register-btn">Kayıt Ol</button> <!-- EKLENDİ -->
   </div>
 
   <!-- Oyun Ekranı -->
@@ -26,15 +27,6 @@
       </div>
       <button id="ranking-btn">Sıralama</button>
     </div>
-    
-    
-<!-- Başlangıç Ekranı -->
-<div id="start-screen" class="center-screen">
-  <h1>WordQuest</h1>
-  <button id="start-btn">Oyna</button>
-  <button id="open-register-btn">Kayıt Ol</button> <!-- Bu satırı ekle -->
-</div>
-
 
     <!-- Kayıt Olma Ekranı -->
     <div id="register-screen" class="hidden">
@@ -49,9 +41,7 @@
     <!-- Sıralama Ekranı -->
     <div id="ranking-screen" class="hidden">
       <h2>En İyi 5 Oyuncu</h2>
-      <ol id="ranking-list">
-        <!-- script.js sıralamayı buraya ekler -->
-      </ol>
+      <ol id="ranking-list"></ol>
       <button id="close-ranking">Kapat</button>
     </div>
 
@@ -59,12 +49,9 @@
     <div id="game-area" class="hidden">
       <h2 id="hint">İpucu</h2>
       <div id="guess-container">
-        <!-- script.js boş kutuları buraya yerleştirir -->
         <div id="guess-box"></div>
       </div>
-      <div id="letter-pool">
-        <!-- script.js harf butonlarını buraya yerleştirir -->
-      </div>
+      <div id="letter-pool"></div>
       <button id="submit-btn">Tahmini Onayla</button>
       <div id="message"></div>
       <button id="back-to-levels-btn">Seviye Seçimine Dön</button>
